@@ -89,7 +89,7 @@ stages:
       vmImage: 'ubuntu-16.04'
     environment: dev
     variables:
-    - group: Release
+    - group: Develop
     strategy:
       runOnce:
         deploy:
@@ -100,7 +100,7 @@ stages:
             displayName: 'Azure App Service Deploy: website'
             inputs:
               azureSubscription: 'Resource Manager - Tailspin - Space Game'
-              appName: '$(WebAppNameDev)'
+              appName: '$(WebAppName)'
               package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
 
 - stage: 'Test'
@@ -147,5 +147,5 @@ stages:
             displayName: 'Azure App Service Deploy: website'
             inputs:
               azureSubscription: 'Resource Manager - Tailspin - Space Game'
-              appName: '$(WebAppNameStaging)'
+              appName: '$(WebAppName)'
               package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
